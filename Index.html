@@ -13,6 +13,7 @@
                             <h1>Matheus Gustavo</h1>
                                     <p>Bem-vindo ao meu portfólio</p>
                                         </header>
+                                           <p id="site-info"></p>
                                         
                                             <section class="sobre">
                                                     <h2>Sobre Mim</h2>
@@ -24,5 +25,45 @@
                                                   <footer>
                                                    <p>Contato: meuemail@exemplo.com | GitHub: <a href="https://github.com/matheuszismann" target="_blank">github.com/matheuszismann</a></p>
                                                   </footer>
+                                                  <script>
+                                                    const siteInfo = [
+                                                        "MatheusFlix - Indicação de filmes para o curso",
+                                                            "Tracker de Caminhadas - Registro simples de distâncias e calorias",
+                                                                "Portfólio pessoal - Mostrando minhas ideias e projetos"
+                                                                ];
+
+                                                                let i = 0; // índice do array
+                                                                let j = 0; // índice da letra
+                                                                let currentText = "";
+                                                                let isDeleting = false;
+                                                                const speed = 50; // velocidade da digitação
+
+                                                                function type() {
+                                                                    const fullText = siteInfo[i];
+
+                                                                        if(!isDeleting) {
+                                                                                currentText = fullText.substring(0, j + 1);
+                                                                                        j++;
+                                                                                            } else {
+                                                                                                    currentText = fullText.substring(0, j - 1);
+                                                                                                            j--;
+                                                                                                                }
+
+                                                                                                                    document.getElementById("site-info").textContent = currentText;
+
+                                                                                                                        if(!isDeleting && j === fullText.length) {
+                                                                                                                                isDeleting = true;
+                                                                                                                                        setTimeout(type, 1000); // pausa antes de apagar
+                                                                                                                                            } else if(isDeleting && j === 0) {
+                                                                                                                                                    isDeleting = false;
+                                                                                                                                                            i = (i + 1) % siteInfo.length; // vai pro próximo texto
+                                                                                                                                                                    setTimeout(type, 500);
+                                                                                                                                                                        } else {
+                                                                                                                                                                                setTimeout(type, speed);
+                                                                                                                                                                                    }
+                                                                                                                                                                                    }
+
+                                                                                                                                                                                    type();
+                                                                                                                                                                                    </script>
                                                </body>
                                           </html>
